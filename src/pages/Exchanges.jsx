@@ -1,6 +1,4 @@
-import { Collapse, Typography, Avatar, Col, Row } from 'antd';
-import millify from 'millify';
-import HTMLReactParser from 'html-react-parser';
+import { Col, Row } from 'antd';
 
 const Exchanges = () => {
 	return (
