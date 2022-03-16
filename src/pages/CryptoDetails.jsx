@@ -17,7 +17,7 @@ import {
 
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from '../services/cryptoApi';
 // import Loader from './Loader';
-import { LineChart } from '../components';
+import { LineChart, Loader } from '../components';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -29,7 +29,7 @@ const CryptoDetails = () => {
 	const { data: coinHistory } = useGetCryptoHistoryQuery({ coinId, timeperiod });
 	const cryptoDetails = data?.data?.coin;
 
-	if (isFetching) return <h2>Loading...</h2>;
+	if (isFetching) return <Loader />;
 
 	const time = ['3h', '24h', '7d', '30d', '3m', '1y', '3y', '5y'];
 
@@ -71,7 +71,7 @@ const CryptoDetails = () => {
 		},
 		{
 			title: 'Total Supply',
-			value: `$ ${millify(cryptoDetails.supply.total ? cryptoDetails.supply.total : 0)}`,
+			value: `$ ${millify(cryptoDetails.supply.total || 0)}`,
 			icon: <ExclamationCircleOutlined />,
 		},
 		{
@@ -108,6 +108,7 @@ const CryptoDetails = () => {
 				coinHistory={coinHistory}
 				currentPrice={millify(cryptoDetails.price)}
 				coinName={cryptoDetails.name}
+				timeperiod={timeperiod}
 			/>
 			<Col className='stats-container'>
 				<Col className='coin-value-statistics'>

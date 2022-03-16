@@ -3,6 +3,7 @@ import { Select, Typography, Row, Col, Avatar, Card } from 'antd';
 import moment from 'moment';
 import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi';
 import { useGetCryptosQuery } from '../services/cryptoApi';
+import { Loader } from '../components';
 
 const News = ({ simplified }) => {
 	const demoImage = 'https://www.bing.com/th?id=OVFT.mpzuVZnv8dwIMRfQGPbOPC&pid=News';
@@ -17,7 +18,7 @@ const News = ({ simplified }) => {
 	});
 	const { data } = useGetCryptosQuery(100);
 
-	if (isFetching) return <h2>Loading...</h2>;
+	if (isFetching) return <Loader />;
 
 	return (
 		<Row gutter={[24, 24]}>
