@@ -32,17 +32,22 @@ const News = ({ simplified }) => {
 						filterOption={(input, option) =>
 							option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
 						}
+						value='Cryptocurrency'
 					>
-						<Option value='Cryptocurrency'>Cryptocurrency</Option>
-						{data?.data?.coins.map((coin) => (
-							<Option value={coin.name}>{coin.name}</Option>
+						<Option key='$' value='Cryptocurrency'>
+							Cryptocurrency
+						</Option>
+						{data?.data?.coins.map((coin, i) => (
+							<Option key={i} value={coin.name}>
+								{coin.name}
+							</Option>
 						))}
 					</Select>
 				</Col>
 			)}
 
 			{cryptoNews?.value.map((news, i) => (
-				<Col key={news.id} xs={24} sm={12} lg={8}>
+				<Col key={i} xs={24} sm={12} lg={8}>
 					<Card className='news-card' hoverable>
 						<a href={news.url} target='_blank' rel='noreferrer'>
 							<div className='news-image-container'>
@@ -60,7 +65,7 @@ const News = ({ simplified }) => {
 									? `${news.description.substring(0, 100)}...`
 									: news.description}
 							</p>
-							<div className='provider-container'>
+							<div className='provider-container' style={{ marginTop: '2rem' }}>
 								<div>
 									<Avatar
 										src={news.provider[0]?.image?.thumbnail?.contentUrl || demoImage}
