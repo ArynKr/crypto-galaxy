@@ -77,11 +77,6 @@ Follow these steps to set up the project on your local machine:
    npm install
    ```
 
-4. Create a `.env` file (if required)
-   ```
-   REACT_APP_COINGECKO_API_KEY=your_api_key
-   ```
-
 5. Start development server
    ```bash
    npm start
